@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>「かふぇしらつめHP」</title>
+    <link rel="icon" href="images/icon.png" type="image/png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=M+PLUS+Rounded+1c:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 全体フォントを丸っこいフォントに変更 */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+
+        /* おしらせを押したとき、固定ヘッダーに隠れないようにする */
+        #news {
+            scroll-margin-top: 90px;
+        }
+
+        /* ページ切り替え用のスタイル：非アクティブなセクションを隠す */
+        .page-section {
+            display: none;
+        }
+        .page-section.is-active {
+            display: block;
+        }
+
+        /* ロゴのサイズを1.3倍に拡大 */
+        .site-logo-img {
+            height: 62px !important;
+            max-width: 221px !important;
+        }
+
+        /* 各ページ固有のスタイルを統合 */
+        section#guide {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: var(--white-soft, #ffffff);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(154, 166, 111, 0.16);
+            border: 1.5px solid #dce5c1;
+            position: relative;
+            text-align: center;
+        }
+
+        .guide-image-wrap {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(154, 166, 111, 0.2);
+            border: 1.5px solid #dce5c1;
+            background: #ffffff;
+        }
+
+        .guide-image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        section#join {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            background: var(--white-soft, #ffffff);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 30px rgba(154, 166, 111, 0.16);
+            border: 1.5px solid #dce5c1;
+            position: relative;
+        }
+
+        .join-intro {
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 2;
+            color: var(--text-dark, #5a4a4a);
+            margin-bottom: 3rem;
+        }
+
+        .step-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .step-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fbfced;
+            border: 1.5px solid var(--main-pink, #e3ebbd);
+            border-radius: 16px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 15px rgba(154, 166, 111, 0.10);
+            position: relative;
+        }
+
+        .step-header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 2px dashed var(--accent-pink, #b8cc79);
+            padding-bottom: 0.6rem;
+        }
+
+        .step-number {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--deep-pink, #657247);
+            line-height: 1;
+        }
+
+        .step-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--deep-pink, #657247);
+        }
+
+        .step-image-wrap {
+            width: 100%;
+            max-width: 600px;
+            margin: 1rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #dce5c1;
+            background: #ffffff;
+        }
+
+        .step-image-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .step-text {
+            width: 100%;
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: var(--text-dark, #5a4a4a);
+            text-align: left;
+            margin-top: 0.5rem;
+        }
+
+        .step-text a {
+            color: var(--deep-pink, #657247);
+            font-weight: 600;
+            word-break: break-all;
+            text-decoration: underline;
+        }
+
+        .step-text a:hover {
+            opacity: 0.8;
+        }
+
+        section#cast {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            background: var(--white-soft, #ffffff);
+            border-radius: 20px;
+            padding: 2.5rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(154, 166, 111, 0.16);
+            border: 1.5px solid #dce5c1;
+            position: relative;
+        }
+
+        .cast-group-title {
+            font-size: 1.3rem;
+            color: var(--deep-pink, #657247);
+            border-bottom: 2px solid var(--main-pink, #e3ebbd);
+            padding-bottom: 0.4rem;
+            margin: 2rem 0 1.5rem;
+            text-align: center;
+        }
+
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .cast-card {
+            background: #fbfced;
+            border-radius: 16px;
+            border: 1.5px solid #dce5c1;
+            padding: 1.5rem 0.8rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(154, 166, 111, 0.08);
+        }
+
+        .cast-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--main-pink, #e3ebbd);
+            margin: 0 auto 0.8rem;
+            border: 3px solid #fff;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            cursor: pointer;
+            transition: transform 0.25s, box-shadow 0.25s;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .cast-avatar:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(154, 166, 111, 0.35);
+        }
+
+        .cast-name {
+            font-weight: bold;
+            color: var(--text-dark, #5a4a4a);
+            font-size: 0.95rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-content {
+            position: relative;
+            background: #fdf6e3;
+            padding: 2rem 1.2rem 1.5rem 1.2rem;
+            border-radius: 20px;
+            max-width: 1200px;
+            width: 95%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 3px solid var(--accent-pink, #b8cc79);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .modal-body {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .modal-large-img {
+            max-width: 100%;
+            max-height: 60vh;
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid var(--main-pink, #e3ebbd);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            object-fit: contain;
+            background-color: #fdf6e3;
+        }
+
+        .modal-sd-img {
+            display: none;
+            position: absolute;
+            bottom: -8px;
+            width: auto;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .modal-body.has-sd .modal-sd-img,
+        .modal-body.has-mag .modal-mag-img {
+            display: block;
+        }
+
+        .modal-mag-img {
+            display: none;
+            position: absolute;
+            bottom: -8px;
+            width: auto;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            pointer-events: none;
+        }
+
+        .profile-x-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: #fff;
+            color: var(--deep-pink, #657247);
+            border: 1.5px solid var(--accent-pink, #b8cc79);
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(154, 166, 111, 0.20);
+        }
+
+        .profile-x-btn:hover {
+            background-color: var(--deep-pink, #657247);
+            color: #fff;
+            border-color: var(--deep-pink, #657247);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--deep-pink, #657247);
+            color: #fff;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: #fbfced;
+            border: 1.5px solid var(--main-yellow);
+            border-radius: 16px;
+            padding: 0.8rem;
+            box-shadow: 0 6px 20px rgba(216, 218, 85, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(216, 218, 85, 0.28);
+        }
+
+        .menu-image-wrap {
+            width: 100%;
+            aspect-ratio: 1414 / 2000;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            background-color: #ffffff;
+        }
+
+        .menu-image-wrap img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* 一周年プロモーション用調整スタイル */
+        .anniversary-promotion {
+            max-width: 900px;
+            margin: 2.5rem auto;
+            padding: 2rem 1.5rem;
+            box-sizing: border-box;
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1.5px solid #dce5c1;
+            box-shadow: 0 10px 30px rgba(154, 166, 111, 0.16);
+            text-align: center;
+        }
+
+        .anniversary-promotion .section-title h2 {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: clamp(1.4rem, 4vw, 2.2rem);
+            font-weight: 700;
+            color: var(--deep-pink, #657247);
+            word-break: keep-all;
+            overflow-wrap: break-word;
+            margin: 0 auto;
+            padding: 0 0.5rem;
+            line-height: 1.4;
+        }
+
+        .anniversary-video {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 比率を維持 */
+            margin-top: 1.5rem;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .anniversary-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 992px) {
+            .cast-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cast-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            section#join {
+                padding: 2rem 1.2rem;
+            }
+            .step-card {
+                padding: 1.2rem;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .menu-card {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+
+            .modal-body {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .modal-large-img { order: 1; }
+            .modal-sd-img { order: 2; }
+            .modal-mag-img { order: 3; }
+            .modal-sd-img,
+            .modal-mag-img {
+                position: static !important;
+                left: auto !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: none !important;
+                max-width: 60% !important;
+                max-height: 30vh !important;
+            }
+        }
+
+        /* ヒーロー画像ファイル名 */
+        .slide-1 { background-image: url("images/かふぇしらつめHP-001.png") !important; }
+        .slide-2 { background-image: url("images/かふぇしらつめHP-002.png") !important; }
+        .slide-3 { background-image: url("images/かふぇしらつめHP-003.png") !important; }
+        .slide-4 { background-image: url("images/かふぇしらつめHP-004.png") !important; }
+        .slide-5 { background-image: url("images/かふぇしらつめHP-005.png") !important; }
+
+        .menu-page-container { padding-top: 1rem; padding-bottom: 3rem; }
+        #menu { max-width: 1000px; margin: 2rem auto; padding: 1.5rem; }
+        .menu-slider { display: flex; align-items: center; justify-content: center; gap: 1rem; width: 100%; }
+        .menu-slide-viewport { overflow: hidden; width: min(100%, 760px); border-radius: 18px; background: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.12); touch-action: pan-y; }
+        .menu-slide-track { display: flex; width: 100%; transition: transform .35s ease; }
+        .menu-slide { flex: 0 0 100%; width: 100%; display: flex; align-items: center; justify-content: center; }
+        .menu-slide img { display: block; width: 100%; height: auto; max-height: 78vh; object-fit: contain; }
+        .menu-slide-arrow { flex: 0 0 auto; border: 0; border-radius: 50%; width: 44px; height: 44px; cursor: pointer; color: #65533b; background: #f8efcf; font-size: 2rem; line-height: 1; box-shadow: 0 3px 10px rgba(0,0,0,.1); }
+        .menu-slide-arrow:hover { transform: scale(1.05); }
+        .menu-slide-indicators { display: flex; justify-content: center; gap: .65rem; margin: 1.2rem auto 0; }
+        .menu-slide-indicators button { width: 11px; height: 11px; padding: 0; border: 0; border-radius: 50%; background: #d8d3c2; cursor: pointer; }
+        .menu-slide-indicators button.is-current { background: #9ba96e; transform: scale(1.2); }
+        @media (max-width: 600px) {
+            #menu { padding: 1rem .5rem; }
+            .menu-slider { gap: .35rem; }
+            .menu-slide-arrow { width: 34px; height: 34px; font-size: 1.6rem; }
+            .menu-slide-viewport { border-radius: 12px; }
+            .menu-slide img { max-height: 70vh; }
+        }
+
+        @media (max-width: 768px) {
+            .cast-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.8rem !important; }
+            .cast-card { padding: 0.9rem 0.45rem !important; min-width: 0; }
+            .cast-avatar { width: clamp(54px, 18vw, 82px) !important; height: clamp(54px, 18vw, 82px) !important; }
+            .cast-name { font-size: 0.82rem !important; overflow-wrap: anywhere; }
+            .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 0.7rem !important; }
+            .menu-card { max-width: none !important; min-width: 0; padding: 0.45rem !important; }
+            .modal-body { flex-direction: row !important; flex-wrap: wrap; justify-content: center; gap: 0.5rem !important; }
+            .modal-large-img { order: 1; max-width: 100%; }
+            .modal-sd-img, .modal-mag-img {
+                position: static !important;
+                transform: none !important;
+                width: 28% !important;
+                max-width: 28% !important;
+                max-height: 22vh !important;
+                object-fit: contain;
+            }
+        }
+        @media (max-width: 380px) {
+            .cast-grid { gap: 0.5rem !important; }
+            .cast-card { padding: 0.7rem 0.3rem !important; }
+            .cast-name { font-size: 0.74rem !important; }
+            .menu-grid { gap: 0.5rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <img src="images/logo.png" alt="Fyulap" class="site-logo-img">
+        </div>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="メニューを開く">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="header-toolbar" id="header-toolbar">
+            <ul>
+                <li><a href="#top" data-target="page-top">top</a></li>
+                <li><a href="#news" data-target="page-top">おしらせ</a></li>
+                <li><a href="#menu" data-target="page-top">メニュー</a></li>
+                <li><a href="#howtojoin" data-target="page-join">来店の流れ</a></li>
+                <li><a href="#maid" data-target="page-cast">店員さん紹介</a></li>
+                <li><a href="#guide" data-target="page-guide">ご案内</a></li>
+                <li><a href="https://x.com/cafe_shiratsume" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="official X"><img src="images/x.png" alt="X" class="sns-icon-img"></a></li>
+                <li><a href="https://vrchat.com/home/group/grp_d7c5ddfd-430a-4ed7-8192-9665f31bc3af" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="VRC Group"><img src="images/vrc.png" alt="VRC" class="sns-icon-img"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <audio id="bgm-audio" loop preload="metadata">
+        <source src="audio/0102.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="bgm-fixed-widget">
+        <button id="mute-btn" class="mute-btn" title="ミュート切替" aria-label="ミュート切替">
+            <svg id="icon-volume" viewBox="0 0 24 24">
+                <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            <svg id="icon-mute" viewBox="0 0 24 24" style="display: none;">
+                <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+            </svg>
+        </button>
+        <div class="slider-container">
+            <div id="slider-progress" class="slider-progress"></div>
+            <input type="range" id="volume-slider" class="volume-slider" min="0" max="1" step="0.01" value="0.5" aria-label="音量調整">
+        </div>
+    </div>
+
+    <!-- Top & News ページ（ひとつのページとしてまとめて表示） -->
+    <div id="page-top" class="page-section is-active">
+        <div class="hero-slider" id="heroSlider">
+            <div class="slides" id="heroSlides">
+                <div class="slide slide-1"></div>
+                <div class="slide slide-2"></div>
+                <div class="slide slide-3"></div>
+                <div class="slide slide-4"></div>
+                <div class="slide slide-5"></div>
+            </div>
+            <div class="hero-arrows">
+                <button class="hero-arrow-btn" id="heroPrevBtn" aria-label="前の画像へ">〈</button>
+                <button class="hero-arrow-btn" id="heroNextBtn" aria-label="次の画像へ">〉</button>
+            </div>
+        </div>
+
+        <div class="container">
+            <section id="news">
+                <div class="section-title section-title-jp">
+                    <h2>おしらせ</h2>
+                </div>
+                <ul class="news-list" id="news-list">
+                    <li class="news-item">
+                        <span class="news-date">2026.11.22</span>
+                        <span class="news-text">「かふぇしらつめ」が一周年を迎えました!</span>
+                    </li>  
+                    <li class="news-item">
+                        <span class="news-date">2026.11.23</span>
+                        <span class="news-text">公式Webサイトを公開いたしました。</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="concept">
+                <div class="section-title">
+                    <h2>Concept</h2>
+                    <span>コンセプト</span>
+                </div>
+                <div class="concept-container">
+                    <div class="concept-block">
+                        <div class="concept-vertical-text">
+                            <p>個性豊かなしらつめちゃんの、</p>
+                            <p>穏やかな憩いのかふぇ。</p>
+                        </div>
+                        <div class="concept-image-box">
+                            <img src="images/Concept Image 01.png" alt="Concept Image 01">
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <div class="concept-vertical-text">
+                            <p>季節を感じるかふぇで</p>
+                            <p>かわいいラテアートと一緒に</p>
+                        </div>
+                        <div class="concept-image-box">
+                            <img src="images/Concept Image 02.png" alt="Concept Image 02">
+                        </div>
+                    </div>
+
+                    <div class="concept-block">
+                        <div class="concept-vertical-text">
+                            <p>心を込めて、精一杯</p>
+                            <p>おもてなししますっ！</p>
+                        </div>
+                        <div class="concept-image-box">
+                            <img src="images/Concept Image 03.png" alt="Concept Image 03">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="concept-footer-wrapper">
+                    <div class="concept-footer-image">
+                        <img src="images/Concept Image 04.png" alt="Concept Footer Image">
+                    </div>
+                    <div class="concept-footer-text">
+                        <p>個性豊かでかわいいしらつめちゃんが店員さんのかふぇ</p>
+                        <p>「かふぇしらつめ」</p>
+                        <p>ホットコーヒーのように暖かくて優しいカフェ空間で</p>
+                        <p>あなたの心にも安心と温かさをプレゼントしちゃいます！</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="anniversary-promotion" class="anniversary-promotion">
+                <div class="section-title">
+                    <h2>一周年プロモーション</h2>
+                </div>
+                <div class="anniversary-video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/FrqKQm_L9Cs?si=ZVb2O3aSALrE5vU5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </section>
+
+        </div>
+        <div class="container menu-page-container">
+            <section id="menu">
+                <div class="section-title">
+                    <h2>Menu</h2>
+                    <span>メニュー</span>
+                </div>
+                <div class="menu-slider" aria-label="メニュー写真スライダー">
+                    <button type="button" class="menu-slide-arrow menu-prev" id="menuPrev" aria-label="前のメニュー写真">‹</button>
+                    <div class="menu-slide-viewport" id="menuSlideViewport">
+                        <div class="menu-slide-track" id="menuSlideTrack">
+                            <div class="menu-slide"><img src="images/menu1.png" alt="メニュー写真1"></div>
+                            <div class="menu-slide"><img src="images/menu2.png" alt="メニュー写真2"></div>
+                            <div class="menu-slide"><img src="images/menu3.png" alt="メニュー写真3"></div>
+                            <div class="menu-slide"><img src="images/menu4.png" alt="メニュー写真4"></div>
+                        </div>
+                    </div>
+                    <button type="button" class="menu-slide-arrow menu-next" id="menuNext" aria-label="次のメニュー写真">›</button>
+                </div>
+                <div class="menu-slide-indicators" id="menuSlideIndicators" aria-label="写真のページ表示">
+                    <button type="button" class="is-current" aria-label="1枚目"></button>
+                    <button type="button" aria-label="2枚目"></button>
+                    <button type="button" aria-label="3枚目"></button>
+                    <button type="button" aria-label="4枚目"></button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+        <!-- 来店方法ページ -->
+        <div id="page-join" class="page-section">
+            <section id="join">
+                <div class="section-title">
+                    <h2>来店方法</h2>
+                    <span>ご参加までの流れ</span>
+                </div>
+                
+                <p class="join-intro">
+                    かふぇしらつめに遊びにくる方法をご紹介します！
+                </p>
+
+                <div class="step-container">
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-number">Step 01</span>
+                            <span class="step-title">営業日の確認</span>
+                        </div>
+                        <div class="step-image-wrap">
+                            <img src="images/joinpicture1.png" alt="営業日の確認">
+                        </div>
+                        <p class="step-text">
+                            公式Xから営業日をご確認ください<br>
+                            毎月第三日曜日、月１回の営業がございます(※営業日は第三日曜から変更になる場合があります）
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-number">Step 02</span>
+                            <span class="step-title">VRChat Groupの参加</span>
+                        </div>
+                        <div class="step-image-wrap">
+                            <img src="images/joinpicture2.png" alt="VRChat Groupの参加">
+                        </div>
+                        <p class="step-text">
+                            VRChat groupに参加 かふぇはgroup+で開かれます！<br>
+                            事前に「かふぇしらつめ」グループに入って開店をお待ちください<br>
+                            <a href="https://vrchat.com/home/group/grp_d7c5ddfd-430a-4ed7-8192-9665f31bc3af" target="_blank" rel="noopener noreferrer">https://vrchat.com/home/group/grp_d7c5ddfd-430a-4ed7-8192-9665f31bc3af</a>
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <div class="step-header">
+                            <span class="step-number">Step 03</span>
+                            <span class="step-title">インスタンスにjoin！</span>
+                        </div>
+                        <div class="step-image-wrap">
+                            <img src="images/joinpicture3.png" alt="ワールドにjoin">
+                        </div>
+                        <p class="step-text">
+                            ワールドに入ったら説明をうけてドリンクを注文します<br>
+                            しらつめちゃんたちとの交流をどうぞお楽しみください
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Maidページ -->
+        <div id="page-cast" class="page-section">
+            <section id="cast">
+                <div class="section-title section-title-jp">
+                    <h2>店員さん紹介</h2>
+                    <p class="cast-profile-hint">アイコンをタップでプロフカードを表示</p>
+                </div>
+                <div class="cast-grid">
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/しゃー.png');" 
+                             data-x="https://x.com/VRC_Shaa" 
+                             data-tap="images/しゃータップ.png"></div>
+                        <div class="cast-name">しゃー/店長</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/もっこちゃん.png');" 
+                             data-x="https://x.com/mokkosu85" 
+                             data-tap="images/もっこちゃんタップ.png"></div>
+                        <div class="cast-name">もっこちゃん</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/しぇいる.png');" 
+                             data-x="https://x.com/sheirut_VRC" 
+                             data-tap="images/しぇいるタップ.png"></div>
+                        <div class="cast-name">しぇいる</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/みしゃぴ.png');" 
+                             data-x="https://x.com/mishapippi" 
+                             data-tap="images/みしゃぴタップ.png"></div>
+                        <div class="cast-name">みしゃぴ</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/めあちー.png');" 
+                             data-x="https://x.com/meati_1" 
+                             data-tap="images/めあちータップ.png"></div>
+                        <div class="cast-name">めあちー</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/かるら.png');" 
+                             data-x="https://x.com/daily_karla_" 
+                             data-tap="images/かるらタップ.png"></div>
+                        <div class="cast-name">かるら</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/らむね.png');" 
+                             data-x="https://x.com/ramune_vrc" 
+                             data-tap="images/らむねタップ.png"></div>
+                        <div class="cast-name">らむね</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/蒼店長.png');" 
+                             data-x="https://x.com/sou_tencho_vrc" 
+                             data-tap="images/蒼店長タップ.png"></div>
+                        <div class="cast-name">蒼店長</div>
+                    </div>
+                </div>
+
+                <div class="cast-group-title" style="margin-top: 2.5rem;"></div>
+                <div class="cast-grid">
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/もに.png');"
+                             data-x="https://x.com/momon9a_vrc"
+                             data-tap="images/もにタップ.png"></div>
+                        <div class="cast-name">もに</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/弥生.png');"
+                             data-x="https://x.com/yxeld_vrc"
+                             data-tap="images/弥生タップ.png"></div>
+                        <div class="cast-name">弥生</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/ビスマス.png');"
+                             data-x="https://x.com/Bismuth_83617"
+                             data-tap="images/ビスマスタップ.png"></div>
+                        <div class="cast-name">ビスマス</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/クーリュウ.png');"
+                             data-x="https://x.com/kuryu_k400"
+                             data-tap="images/クーリュウタップ.png"></div>
+                        <div class="cast-name">クーリュウ</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/ぽこぴーや.png');"
+                             data-x="https://x.com/pokopi_0106"
+                             data-tap="images/ぽこぴーやタップ.png"></div>
+                        <div class="cast-name">ぽこぴーや</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/neoのアトリエ.png');"
+                             data-x="https://x.com/neo_Atelier_VRC"
+                             data-tap="images/neoのアトリエタップ.png"></div>
+                        <div class="cast-name">neoのアトリエ</div>
+                    </div>
+                    <div class="cast-card">
+                        <div class="cast-avatar" style="background-image: url('images/みぎ.png');"
+                             data-x=""
+                             data-tap="images/みぎタップ.png"></div>
+                        <div class="cast-name">みぎ</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ご案内ページ -->
+        <div id="page-guide" class="page-section">
+            <section id="guide">
+                <div class="section-title section-title-jp">
+                    <h2>ご案内</h2>
+                </div>
+                <div class="guide-image-wrap">
+                    <img src="images/カフェ注文のご案内.png" alt="カフェ注文のご案内">
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+    <!-- Cast Image Modal -->
+    <div id="image-modal" class="modal" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <button class="close-btn" id="modal-close" aria-label="閉じる">&times;</button>
+            <div id="modal-body" class="modal-body">
+                <img id="modal-sd-img" class="modal-sd-img" src="" alt="SDイラスト">
+                <img id="modal-mag-img" class="modal-mag-img" src="" alt="magイラスト">
+                <img id="modal-tap-img" class="modal-large-img" src="" alt="キャストタップ画像">
+            </div>
+            <div id="modal-x-links" style="display:flex; gap:0.7rem; flex-wrap:wrap; justify-content:center;">
+                <a id="modal-x-link" href="#" target="_blank" rel="noopener noreferrer" class="profile-x-btn">
+                    Xをみる ↗
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-sns-links">
+            <a href="https://x.com/cafe_shiratsume" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="official X"><img src="images/x.png" alt="X" class="sns-icon-img"></a>
+            <a href="https://vrchat.com/home/group/grp_d7c5ddfd-430a-4ed7-8192-9665f31bc3af" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="VRC Group"><img src="images/vrc.png" alt="VRC" class="sns-icon-img"></a>
+        </div>
+        <p>© かふぇしらつめ / </p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('fade-in');
+
+            // モバイルメニューの開閉
+            const menuToggle = document.getElementById('menu-toggle');
+            const headerToolbar = document.getElementById('header-toolbar');
+
+            menuToggle.addEventListener('click', () => {
+                headerToolbar.classList.toggle('is-open');
+            });
+
+            // ページ切り替え（タブ切り替え）の仕組み
+            const navLinks = document.querySelectorAll('.header-toolbar a[data-target]');
+            const pageSections = document.querySelectorAll('.page-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+
+                    pageSections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.add('is-active');
+                        } else {
+                            section.classList.remove('is-active');
+                        }
+                    });
+
+                    if (headerToolbar.classList.contains('is-open')) {
+                        headerToolbar.classList.remove('is-open');
+                    }
+
+                    const href = link.getAttribute('href');
+                    const anchor = (href === '#news' || href === '#menu') ? document.querySelector(href) : null;
+                    if (anchor) {
+                        anchor.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    } else {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // メニュー写真スライダー
+            const menuTrack = document.getElementById('menuSlideTrack');
+            const menuViewport = document.getElementById('menuSlideViewport');
+            const menuPrev = document.getElementById('menuPrev');
+            const menuNext = document.getElementById('menuNext');
+            const menuDots = document.querySelectorAll('#menuSlideIndicators button');
+            let menuIndex = 0;
+            const menuCount = menuTrack ? menuTrack.children.length : 0;
+            function showMenuSlide(index) {
+                if (!menuTrack || menuCount === 0) return;
+                menuIndex = (index + menuCount) % menuCount;
+                menuTrack.style.transform = `translateX(-${menuIndex * 100}%)`;
+                menuDots.forEach((dot, i) => dot.classList.toggle('is-current', i === menuIndex));
+            }
+            menuPrev?.addEventListener('click', () => showMenuSlide(menuIndex - 1));
+            menuNext?.addEventListener('click', () => showMenuSlide(menuIndex + 1));
+            menuDots.forEach((dot, i) => dot.addEventListener('click', () => showMenuSlide(i)));
+            let menuTouchStartX = 0;
+            menuViewport?.addEventListener('touchstart', (e) => { menuTouchStartX = e.changedTouches[0].clientX; }, { passive: true });
+            menuViewport?.addEventListener('touchend', (e) => {
+                const delta = e.changedTouches[0].clientX - menuTouchStartX;
+                if (Math.abs(delta) > 45) showMenuSlide(menuIndex + (delta < 0 ? 1 : -1));
+            }, { passive: true });
+
+            // BGMスクリプトの読み込み
+            const bgmScript = document.createElement('script');
+            bgmScript.src = 'bgm.js';
+            document.body.appendChild(bgmScript);
+
+            // ヒーロースライダーの処理
+            const heroSlider = document.getElementById('page-top');
+            const heroSlides = document.getElementById('heroSlides');
+            const slideItems = heroSlides.querySelectorAll('.slide');
+            const heroPrevBtn = document.getElementById('heroPrevBtn');
+            const heroNextBtn = document.getElementById('heroNextBtn');
+
+            let currentIndex = 0;
+            const totalSlides = slideItems.length;
+            const slideIntervalTime = 4000;
+            let slideTimer;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function updateSlide() {
+                heroSlides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalSlides;
+                updateSlide();
+            }
+
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                updateSlide();
+            }
+
+            function startSlideTimer() {
+                clearInterval(slideTimer);
+                slideTimer = setInterval(nextSlide, slideIntervalTime);
+            }
+
+            function resetSlideTimer() {
+                clearInterval(slideTimer);
+                startSlideTimer();
+            }
+
+            heroNextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                nextSlide();
+                resetSlideTimer();
+            });
+
+            heroPrevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                prevSlide();
+                resetSlideTimer();
+            });
+
+            heroSlider.addEventListener('mouseenter', () => clearInterval(slideTimer));
+            heroSlider.addEventListener('mouseleave', () => startSlideTimer());
+
+            heroSlider.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                clearInterval(slideTimer);
+            }, { passive: true });
+
+            heroSlider.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const swipeThreshold = 50;
+                if (touchStartX - touchEndX > swipeThreshold) nextSlide();
+                else if (touchEndX - touchStartX > swipeThreshold) prevSlide();
+                startSlideTimer();
+            }, { passive: true });
+
+            startSlideTimer();
+
+            // Concept アニメーション監視
+            const conceptTargets = document.querySelectorAll('.concept-block, .concept-footer-wrapper');
+            const conceptObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            conceptTargets.forEach(el => conceptObserver.observe(el));
+
+            const modal = document.getElementById('image-modal');
+            const modalBody = document.getElementById('modal-body');
+            const modalTapImg = document.getElementById('modal-tap-img');
+            const modalSdImg = document.getElementById('modal-sd-img');
+            const modalMagImg = document.getElementById('modal-mag-img');
+            const modalXLink = document.getElementById('modal-x-link');
+            const modalClose = document.getElementById('modal-close');
+            const avatars = document.querySelectorAll('.cast-avatar');
+
+            let sdOnRight = false;
+            const mobileQuery = window.matchMedia('(max-width: 768px)');
+
+            function layoutSideImages() {
+                if (!modalBody.classList.contains('has-sd') || !modalBody.classList.contains('has-mag')) return;
+
+                if (mobileQuery.matches) {
+                    modalSdImg.style.cssText = '';
+                    modalMagImg.style.cssText = '';
+                    return;
+                }
+
+                const margin = (modalBody.clientWidth - modalTapImg.clientWidth) / 2;
+                if (margin < 60) {
+                    modalSdImg.style.display = 'none';
+                    modalMagImg.style.display = 'none';
+                    return;
+                }
+
+                const sideWidth = margin - 16;
+                [modalSdImg, modalMagImg].forEach(img => {
+                    img.style.display = 'block';
+                    img.style.maxWidth = sideWidth + 'px';
+                });
+
+                const leftImg = sdOnRight ? modalMagImg : modalSdImg;
+                const rightImg = sdOnRight ? modalSdImg : modalMagImg;
+                leftImg.style.left = (margin / 2) + 'px';
+                leftImg.style.right = 'auto';
+                leftImg.style.transform = 'translateX(-50%)';
+                rightImg.style.right = (margin / 2) + 'px';
+                rightImg.style.left = 'auto';
+                rightImg.style.transform = 'translateX(50%)';
+            }
+
+            modalSdImg.addEventListener('load', () => {
+                modalBody.classList.add('has-sd');
+                layoutSideImages();
+            });
+            modalSdImg.addEventListener('error', () => {
+                modalBody.classList.remove('has-sd');
+                modalSdImg.style.cssText = '';
+            });
+            modalMagImg.addEventListener('load', () => {
+                modalBody.classList.add('has-mag');
+                layoutSideImages();
+            });
+            modalMagImg.addEventListener('error', () => {
+                modalBody.classList.remove('has-mag');
+                modalMagImg.style.cssText = '';
+            });
+            modalTapImg.addEventListener('load', layoutSideImages);
+            window.addEventListener('resize', layoutSideImages);
+
+            avatars.forEach((avatar, index) => {
+                avatar.addEventListener('click', () => {
+                    const tapImg = avatar.getAttribute('data-tap');
+                    const xUrl = avatar.getAttribute('data-x');
+
+                    const sdImg = tapImg ? tapImg.replace(/タップ\.png$/, 'SD.png') : '';
+
+                    sdOnRight = (index % 2 === 1);
+                    modalBody.classList.remove('has-sd', 'has-mag');
+                    modalSdImg.style.cssText = '';
+                    modalMagImg.style.cssText = '';
+                    modalSdImg.src = sdImg;
+                    const magImg = tapImg ? tapImg.replace(/タップ\.png$/, 'mag.png') : '';
+                    modalMagImg.src = magImg;
+
+                    modalTapImg.src = tapImg || '';
+
+                    if (xUrl) {
+                        modalXLink.href = xUrl;
+                        modalXLink.style.display = '';
+                    } else {
+                        modalXLink.href = '#';
+                        modalXLink.style.display = 'none';
+                    }
+
+                    modal.style.display = 'flex';
+                    modal.setAttribute('aria-hidden', 'false');
+                    layoutSideImages();
+                });
+            });
+
+            const closeModal = () => {
+                modal.style.display = 'none';
+                modal.setAttribute('aria-hidden', 'true');
+            };
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
