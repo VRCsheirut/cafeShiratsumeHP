@@ -846,213 +846,139 @@ footer {
 }
 
 
-/* --- Mobile: PC版の横並び構成をできるだけ維持 --- */
+/* --- スマートフォン用メニュー：index2の縦型展開を採用 --- */
 @media (max-width: 850px) {
   header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 8px;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
   }
 
-  .menu-toggle { display: none !important; }
+  .menu-toggle {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    margin-left: auto;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+    z-index: 2202;
+  }
 
-  .header-left { flex: 0 0 auto; gap: 0; }
-  .site-logo-img { height: 36px !important; max-width: 86px !important; }
+  .menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    margin: 3px 0;
+    border-radius: 2px;
+    background-color: var(--deep-accent);
+    transition: transform 0.25s ease, opacity 0.2s ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
 
   .header-toolbar,
   .header-toolbar.is-open {
-    position: static;
-    display: flex !important;
-    flex: 1 1 auto;
-    width: auto;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    background: transparent;
-    box-shadow: none;
-    border: 0;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    flex-direction: row;
-  }
-  .header-toolbar::-webkit-scrollbar { display: none; }
-  .header-toolbar ul {
+    position: fixed;
+    top: 64px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2001;
     display: flex;
-    flex: 0 0 auto;
-    flex-direction: row !important;
-    align-items: center;
-    gap: 3px;
-    width: max-content;
-    white-space: nowrap;
-  }
-  .header-toolbar li { width: auto; flex: 0 0 auto; }
-  .header-toolbar a {
-    display: inline-flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5px 6px;
-    font-size: 0.68rem;
-    white-space: nowrap;
-  }
-  .header-toolbar .sns-btn-circle {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-  }
-  .header-toolbar .sns-icon-img { width: 16px; height: 16px; }
-
-  .concept-block,
-  .concept-block:nth-child(even) {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.65rem;
     width: 100%;
+    height: calc(100dvh - 64px);
+    max-height: none;
+    overflow-y: auto;
+    padding: 24px 18px 30px;
+    margin: 0;
+    background: rgba(250, 250, 242, 0.97);
+    border: 0;
+    border-bottom: 2px solid var(--accent-yellow);
+    box-shadow: 0 8px 16px rgba(73, 69, 54, 0.08);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
   }
-  .concept-vertical-text,
-  .concept-block:nth-child(even) .concept-vertical-text {
-    flex: 0 0 auto;
-    width: auto;
-    max-width: 34%;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    white-space: nowrap;
-    text-align: left;
-    font-size: clamp(0.72rem, 2.5vw, 0.95rem);
-    letter-spacing: 0.08em;
-    line-height: 1.8;
-    padding: 0.35rem 0.25rem !important;
-    border-right: 1px solid var(--accent-yellow);
-    border-left: 0;
-  }
-  .concept-block:nth-child(even) .concept-vertical-text {
-    border-right: 0;
-    border-left: 1px solid var(--accent-yellow);
-  }
-  .concept-image-box {
-    flex: 1 1 0;
-    min-width: 0;
-    width: auto;
-    max-width: none;
-    height: auto;
-    aspect-ratio: 600 / 380;
-  }
-  .concept-image-box img { width: 100%; height: 100%; object-fit: cover; }
 
-  .concept-footer-wrapper {
+  .header-toolbar.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .header-toolbar ul {
     display: flex;
-    flex-direction: row;
+    flex-direction: column !important;
     align-items: center;
-    gap: 0.8rem;
-  }
-  .concept-footer-image {
-    flex: 0 0 42%;
-    width: 42%;
-    max-width: 42%;
-    height: auto;
-    aspect-ratio: 480 / 370;
-  }
-  .concept-footer-text {
-    flex: 1 1 0;
-    min-width: 0;
+    justify-content: center;
+    gap: clamp(12px, 2.5vh, 22px);
+    width: 100%;
     padding: 0;
-    font-size: clamp(0.68rem, 2.35vw, 0.88rem);
-    line-height: 1.75;
-    overflow-wrap: anywhere;
+    margin: auto 0;
+    list-style: none;
   }
 
-  .news-item {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-    gap: 0.55rem;
+  .header-toolbar li {
+    width: 100%;
+    text-align: center;
   }
-  .news-date { flex: 0 0 auto; white-space: nowrap; }
-  .news-text { flex: 1 1 0; min-width: 0; }
+
+  .header-toolbar a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 38px;
+    padding: 6px 12px;
+    color: var(--deep-accent);
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .header-toolbar a:hover {
+    background-color: var(--main-yellow);
+    color: var(--deep-accent);
+  }
+
+  .header-toolbar .sns-btn-circle {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    margin: 0 auto;
+    padding: 0 !important;
+  }
+
+  .header-toolbar .sns-icon-img {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 @media (max-width: 480px) {
-  header { padding: 5px 6px; gap: 4px; }
-  .site-logo-img { height: 31px !important; max-width: 72px !important; }
-  .header-toolbar ul { gap: 1px; }
-  .header-toolbar a { font-size: 0.62rem; padding: 4px 5px; }
-  .header-toolbar .sns-btn-circle { width: 25px; height: 25px; min-width: 25px; }
-  .header-toolbar .sns-icon-img { width: 14px; height: 14px; }
-
-  .concept-container { gap: 1.5rem; }
-  .concept-block,
-  .concept-block:nth-child(even) { gap: 0.45rem; }
-  .concept-vertical-text,
-  .concept-block:nth-child(even) .concept-vertical-text {
-    font-size: 0.7rem;
-    letter-spacing: 0.04em;
-    line-height: 1.65;
-    padding: 0.2rem 0.15rem !important;
-  }
-  .concept-footer-wrapper { gap: 0.55rem; }
-  .concept-footer-image { flex-basis: 40%; width: 40%; max-width: 40%; }
-  .concept-footer-text { font-size: 0.68rem; line-height: 1.65; }
-  .news-date { font-size: 0.68rem; }
-  .news-text { font-size: 0.76rem; }
-}
-
-
-/* 一周年プロモーション動画 */
-.anniversary-promotion {
-  max-width: 1000px;
-  margin: 2.5rem auto 3rem;
-  padding: 0 1rem;
-  text-align: center;
-}
-
-.anniversary-promotion .section-title {
-  margin-bottom: 1.2rem;
-}
-
-.anniversary-video {
-  position: relative;
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border: 2px solid #dce5c1;
-  border-radius: 18px;
-  background: #494536;
-  box-shadow: 0 8px 24px rgba(101, 114, 71, 0.16);
-}
-
-.anniversary-video iframe {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.cast-profile-hint {
-  margin-top: 0.15rem;
-  color: #81785f;
-  font-size: 0.72rem;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .anniversary-promotion {
-    margin: 1.8rem auto 2.2rem;
-    padding: 0 0.65rem;
-  }
-
-  .anniversary-video {
-    border-radius: 12px;
-  }
-
-  .cast-profile-hint {
-    font-size: 0.68rem;
+  .header-toolbar,
+  .header-toolbar.is-open {
+    top: 58px;
+    height: calc(100dvh - 58px);
   }
 }

@@ -532,6 +532,9 @@
             .cast-name { font-size: 0.74rem !important; }
             .menu-grid { gap: 0.5rem !important; }
         }
+
+
+
     </style>
 </head>
 <body>
@@ -916,8 +919,31 @@
             const menuToggle = document.getElementById('menu-toggle');
             const headerToolbar = document.getElementById('header-toolbar');
 
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-controls', 'header-toolbar');
+
+            const closeMobileMenu = () => {
+                headerToolbar.classList.remove('is-open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'メニューを開く');
+            };
+
             menuToggle.addEventListener('click', () => {
-                headerToolbar.classList.toggle('is-open');
+                const isOpen = headerToolbar.classList.toggle('is-open');
+                menuToggle.setAttribute('aria-expanded', String(isOpen));
+                menuToggle.setAttribute('aria-label', isOpen ? 'メニューを閉じる' : 'メニューを開く');
+            });
+
+            // メニュー外をタップした場合も閉じる
+            document.addEventListener('click', (event) => {
+                if (!headerToolbar.contains(event.target) && !menuToggle.contains(event.target)) {
+                    closeMobileMenu();
+                }
+            });
+
+            // 画面幅がPCサイズに戻った場合はメニュー状態をリセット
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) closeMobileMenu();
             });
 
             // ページ切り替え（タブ切り替え）の仕組み
@@ -937,9 +963,7 @@
                         }
                     });
 
-                    if (headerToolbar.classList.contains('is-open')) {
-                        headerToolbar.classList.remove('is-open');
-                    }
+                    closeMobileMenu();
 
                     const href = link.getAttribute('href');
                     const anchor = (href === '#news' || href === '#menu') ? document.querySelector(href) : null;
