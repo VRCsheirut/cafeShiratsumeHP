@@ -17,17 +17,17 @@
             scroll-behavior: smooth;
         }
 
-        /* 全体フォントを丸っこいフォントに変更 */
+        /フォント変更
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
         }
 
-        /* おしらせを押したとき、固定ヘッダーに隠れないようにする */
+        /* おしらせ誘導 */
         #news {
             scroll-margin-top: 90px;
         }
 
-        /* ページ切り替え用のスタイル：非アクティブなセクションを隠す */
+        /* ページ切り替え用のスタイル： */
         .page-section {
             display: none;
         }
@@ -35,7 +35,7 @@
             display: block;
         }
 
-        /* ロゴのサイズを1.3倍に拡大 */
+        /* ロゴのサイズ拡大 */
         .site-logo-img {
             height: 62px !important;
             max-width: 221px !important;
@@ -535,6 +535,32 @@
 
 
 
+
+        /* 側面余白のSDイラスト（左右各3か所・サイズ拡大・重なり防止・ヘッダー/フッター/ヒーロースライダー回避） */
+        .side-sd-decor {
+            position: absolute;
+            width: clamp(300px, 35vw, 525px);
+            max-height: 45vh;
+            object-fit: contain;
+            z-index: 500;
+            pointer-events: none;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.55s ease, transform 0.55s ease;
+            filter: drop-shadow(0 8px 18px rgba(101, 114, 71, 0.26));
+        }
+        .side-sd-decor.is-visible {
+            opacity: 0.95;
+            transform: scale(1);
+        }
+        .side-sd-decor.is-suppressed {
+            opacity: 0 !important;
+        }
+        @media (max-width: 1320px) {
+            .side-sd-decor {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -558,6 +584,7 @@
                 <li><a href="#howtojoin" data-target="page-join">来店の流れ</a></li>
                 <li><a href="#maid" data-target="page-cast">店員さん紹介</a></li>
                 <li><a href="#guide" data-target="page-guide">ご案内</a></li>
+                <li><a href="#history" data-target="page-history">これまでのかふぇしらつめ</a></li>
                 <li><a href="https://x.com/cafe_shiratsume" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="official X"><img src="images/x.png" alt="X" class="sns-icon-img"></a></li>
                 <li><a href="https://vrchat.com/home/group/grp_d7c5ddfd-430a-4ed7-8192-9665f31bc3af" target="_blank" rel="noopener noreferrer" class="sns-btn-circle" title="VRC Group"><img src="images/vrc.png" alt="VRC" class="sns-icon-img"></a></li>
             </ul>
@@ -884,7 +911,124 @@
             </section>
         </div>
 
+        <!-- これまでのあゆみページ -->
+        <div id="page-history" class="page-section">
+            <section id="history">
+                <div class="section-title section-title-jp">
+                    <h2>これまでのあゆみ</h2>
+                </div>
+                <p class="history-intro">
+                    これまでのかふぇしらつめの営業を振り返ります
+                </p>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2025年11月　初オープン</h3>
+                    <div class="history-grid">
+                        <img src="images/202511.png" alt="2025年11月 初オープン">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2025年12月　クリスマス営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202512.png" alt="2025年12月 クリスマス営業">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年1月　新年営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202601.png" alt="2026年1月 新年営業 1">
+                        <img src="images/202601_2.png" alt="2026年1月 新年営業 2">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年2月　バレンタイン営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202602.png" alt="2026年2月 バレンタイン営業 1">
+                        <img src="images/202602_2.png" alt="2026年2月 バレンタイン営業 2">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年3月　ひな祭り営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202603.png" alt="2026年3月 ひな祭り営業 1">
+                        <img src="images/202603_2.png" alt="2026年3月 ひな祭り営業 2">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年4月　しらつめ周年営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202604.png" alt="2026年4月 しらつめ周年営業 1">
+                        <img src="images/202604_2.png" alt="2026年4月 しらつめ周年営業 2">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年5月　通常営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202605.png" alt="2026年5月 通常営業 1">
+                        <img src="images/202605_2.png" alt="2026年5月 通常営業 2">
+                        <img src="images/202605_3.png" alt="2026年5月 通常営業 3">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年6月　リニューアルオープン</h3>
+                    <div class="history-grid">
+                        <img src="images/202606.png" alt="2026年6月 リニューアルオープン 1">
+                        <img src="images/202606_2.png" alt="2026年6月 リニューアルオープン 2">
+                        <img src="images/202606_3.png" alt="2026年6月 リニューアルオープン 3">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年7月　水着営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202607.png" alt="2026年7月 水着営業 1">
+                        <img src="images/202607_2.png" alt="2026年7月 水着営業 2">
+                        <img src="images/202607_3.png" alt="2026年7月 水着営業 3">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年8月　浴衣営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202608.png" alt="2026年8月 浴衣営業 1">
+                        <img src="images/202608_2.png" alt="2026年8月 浴衣営業 2">
+                        <img src="images/202608_3.png" alt="2026年8月 浴衣営業 3">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年9月　通常営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202609.png" alt="2026年9月 通常営業 1">
+                        <img src="images/202609_2.png" alt="2026年9月 通常営業 2">
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年10月　ハロウィン営業</h3>
+                    <div class="history-grid">
+                        <img src="images/202610.png" alt="2026年10月 ハロウィン営業 1">
+                        <img src="images/202610_2.png" alt="2026年10月 ハロウィン営業 2">
+                        <img src="images/202610_3.png" alt="2026年10月 ハロウィン営業 3">
+                    </div>
+                </div>
+            </section>
+        </div>
+
     </div>
+
+    <!-- 側面余白のSDイラスト（左右3か所ずつ計6ポイント・重なり防止） -->
+    <img id="side-sd-1" class="side-sd-decor" src="" alt="" aria-hidden="true">
+    <img id="side-sd-2" class="side-sd-decor" src="" alt="" aria-hidden="true">
+    <img id="side-sd-3" class="side-sd-decor" src="" alt="" aria-hidden="true">
+    <img id="side-sd-4" class="side-sd-decor" src="" alt="" aria-hidden="true">
 
     <!-- Cast Image Modal -->
     <div id="image-modal" class="modal" role="dialog" aria-hidden="true">
@@ -1191,6 +1335,201 @@
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
             });
+
+            // 側面余白の(キャスト名)SD.pngランダム切り替え（左右各3か所・重なり防止・ヘッダー/フッター/ヒーロースライダー回避）
+            const sideSdEls = [
+                document.getElementById('side-sd-1'),
+                document.getElementById('side-sd-2'),
+                document.getElementById('side-sd-3'),
+                document.getElementById('side-sd-4')
+            ].filter(Boolean);
+
+            const headerEl = document.querySelector('header');
+            const footerEl = document.querySelector('footer');
+            const heroSliderEl = document.getElementById('heroSlider');
+            const pageTopEl = document.getElementById('page-top');
+
+            // ページ全体の高さに合わせ、左右それぞれ複数の出現位置を均等に用意
+            function createSpawnPoints() {
+                const pageHeight = Math.max(
+                    document.documentElement.scrollHeight,
+                    document.body.scrollHeight
+                );
+                const headerBottom = headerEl ? headerEl.offsetHeight + 24 : 120;
+                const footerTop = footerEl
+                    ? Math.max(headerBottom + 200, footerEl.getBoundingClientRect().top + window.scrollY - 220)
+                    : pageHeight - 160;
+                const usableHeight = Math.max(300, footerTop - headerBottom);
+                const points = [];
+                const countPerSide = 12;
+                ['left', 'right'].forEach(side => {
+                    for (let i = 0; i < countPerSide; i++) {
+                        const top = headerBottom + usableHeight * (i / (countPerSide - 1));
+                        points.push({ id: `${side === 'left' ? 'L' : 'R'}${i + 1}`, side, top: `${Math.round(top)}px` });
+                    }
+                });
+                return points;
+            }
+            let spawnPoints = createSpawnPoints();
+
+            const sdImages = Array.from(document.querySelectorAll('.cast-avatar'))
+                .map(el => el.getAttribute('data-tap'))
+                .filter(Boolean)
+                .map(tap => tap.replace(/タップ\.png$/, 'SD.png'));
+            const uniqueSdImages = Array.from(new Set(sdImages));
+
+            function isBlockedByHeaderOrHero(el) {
+                const rect = el.getBoundingClientRect();
+                const headerBottom = headerEl ? headerEl.getBoundingClientRect().bottom : 80;
+                if (rect.top < headerBottom + 12) return true;
+
+                const isTopActive = pageTopEl ? pageTopEl.classList.contains('is-active') : false;
+                if (isTopActive && heroSliderEl) {
+                    const heroRect = heroSliderEl.getBoundingClientRect();
+                    const overlapsVertically = rect.bottom > heroRect.top && rect.top < heroRect.bottom;
+                    if (overlapsVertically) return true;
+                }
+                return false;
+            }
+
+            function isBlockedByFooter(el) {
+                if (!footerEl) return false;
+                const rect = el.getBoundingClientRect();
+                const footerRect = footerEl.getBoundingClientRect();
+                if (footerRect.top < window.innerHeight && rect.bottom > footerRect.top - 12) {
+                    return true;
+                }
+                return false;
+            }
+
+            function rectsOverlap(a, b, pad = 16) {
+                return !(
+                    a.right + pad < b.left ||
+                    a.left - pad > b.right ||
+                    a.bottom + pad < b.top ||
+                    a.top - pad > b.bottom
+                );
+            }
+
+            function syncDecorVisibility() {
+                const visibleEls = sideSdEls.filter(el => el.classList.contains('is-visible'));
+                const acceptedRects = [];
+
+                sideSdEls.forEach(el => {
+                    if (!el.classList.contains('is-visible')) {
+                        el.classList.remove('is-suppressed');
+                        return;
+                    }
+                    if (isBlockedByHeaderOrHero(el) || isBlockedByFooter(el)) {
+                        el.classList.add('is-suppressed');
+                        return;
+                    }
+                    const rect = el.getBoundingClientRect();
+                    const collides = acceptedRects.some(r => rectsOverlap(rect, r, 20));
+                    if (collides) {
+                        el.classList.add('is-suppressed');
+                    } else {
+                        el.classList.remove('is-suppressed');
+                        acceptedRects.push(rect);
+                    }
+                });
+                return visibleEls.length;
+            }
+
+            function getActiveSdList(ignoreEl = null) {
+                return sideSdEls
+                    .filter(el => el !== ignoreEl)
+                    .map(el => el.dataset.currentSrc || el.dataset.pendingSrc || el.getAttribute('src'))
+                    .filter(Boolean);
+            }
+
+            function getActivePointIds(ignoreEl = null) {
+                return sideSdEls
+                    .filter(el => el !== ignoreEl)
+                    .map(el => el.dataset.pointId)
+                    .filter(Boolean);
+            }
+
+            function pickRandomItem(items, excludeIds = [], idKey = 'id') {
+                const pool = items.filter(item => !excludeIds.includes(typeof item === 'string' ? item : item[idKey]));
+                const candidates = pool.length > 0 ? pool : items;
+                return candidates[Math.floor(Math.random() * candidates.length)];
+            }
+
+            function applySpawnPoint(el, point) {
+                const sideOffset = 'max(8px, calc((100vw - 1200px) / 4 - clamp(88px, 9.5vw, 150px)))';
+                el.dataset.pointId = point.id;
+                el.style.top = point.top;
+                if (point.side === 'left') {
+                    el.style.left = sideOffset;
+                    el.style.right = 'auto';
+                } else {
+                    el.style.right = sideOffset;
+                    el.style.left = 'auto';
+                }
+            }
+
+            function swapSideSd(el) {
+                if (!el || uniqueSdImages.length === 0) return;
+                const excludeImages = getActiveSdList(el);
+                const excludePoints = getActivePointIds(el);
+                const nextSrc = pickRandomItem(uniqueSdImages, excludeImages);
+                spawnPoints = createSpawnPoints(); // コンテンツの高さ変更にも追従
+                const nextPoint = pickRandomItem(spawnPoints, excludePoints, 'id');
+
+                el.dataset.pendingSrc = nextSrc;
+                el.classList.remove('is-visible');
+                el.classList.remove('is-suppressed');
+
+                setTimeout(() => {
+                    if (el.dataset.pendingSrc !== nextSrc) return;
+                    applySpawnPoint(el, nextPoint);
+
+                    const loader = new Image();
+                    loader.onload = () => {
+                        if (el.dataset.pendingSrc !== nextSrc) return;
+                        el.dataset.currentSrc = nextSrc;
+                        el.src = nextSrc;
+                        requestAnimationFrame(() => {
+                            el.classList.add('is-visible');
+                            syncDecorVisibility();
+                        });
+                    };
+                    loader.onerror = () => {
+                        if (el.dataset.pendingSrc !== nextSrc) return;
+                        const fallback = pickRandomItem(uniqueSdImages, [nextSrc]);
+                        if (!fallback) return;
+                        el.dataset.currentSrc = fallback;
+                        el.dataset.pendingSrc = fallback;
+                        const retry = new Image();
+                        retry.onload = () => {
+                            el.src = fallback;
+                            requestAnimationFrame(() => {
+                                el.classList.add('is-visible');
+                                syncDecorVisibility();
+                            });
+                        };
+                        retry.src = fallback;
+                    };
+                    loader.src = nextSrc;
+                }, 320);
+            }
+
+            window.addEventListener('scroll', syncDecorVisibility, { passive: true });
+            window.addEventListener('resize', syncDecorVisibility, { passive: true });
+
+            if (uniqueSdImages.length > 0 && sideSdEls.length > 0) {
+                sideSdEls.forEach((el, idx) => {
+                    setTimeout(() => swapSideSd(el), idx * 750);
+                });
+
+                sideSdEls.forEach((el, idx) => {
+                    setTimeout(() => {
+                        setInterval(() => swapSideSd(el), 6400);
+                    }, idx * 1600);
+                });
+            }
+
         });
     </script>
 </body>
