@@ -17,7 +17,7 @@
             scroll-behavior: smooth;
         }
 
-        /フォント変更
+        /* フォント変更 */
         body {
             font-family: 'M PLUS Rounded 1c', sans-serif;
         }
@@ -25,6 +25,47 @@
         /* おしらせ誘導 */
         #news {
             scroll-margin-top: 90px;
+        }
+
+        /* 次回営業日予告カードのスタイル */
+        .next-event-card {
+            background: #fbfced;
+            border: 2px solid var(--accent-pink, #b8cc79);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(154, 166, 111, 0.15);
+        }
+
+        .next-event-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--deep-pink, #657247);
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            border-bottom: 2px dashed var(--accent-pink, #b8cc79);
+            padding-bottom: 0.2rem;
+        }
+
+        .next-event-date {
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 900;
+            color: var(--text-dark, #5a4a4a);
+            margin: 0.4rem 0 1rem;
+        }
+
+        /* Xツイート埋め込み用プレースホルダー */
+        .next-event-x-embed {
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .next-event-x-embed blockquote {
+            margin: 0 auto !important;
         }
 
         /* ページ切り替え用のスタイル： */
@@ -533,10 +574,7 @@
             .menu-grid { gap: 0.5rem !important; }
         }
 
-
-
-
-        /* 側面余白のSDイラスト（左右各3か所・サイズ拡大・重なり防止・ヘッダー/フッター/ヒーロースライダー回避） */
+        /* 側面余白のSDイラスト */
         .side-sd-decor {
             position: absolute;
             width: clamp(300px, 35vw, 525px);
@@ -631,6 +669,17 @@
                 <div class="section-title section-title-jp">
                     <h2>おしらせ</h2>
                 </div>
+
+                <!-- 次回営業日予告エリア -->
+                <div class="next-event-card">
+                    <div class="next-event-title">🌱 次回営業日予告 🌱</div>
+                    <div class="next-event-date">12月13日（日）予定</div>
+                    <!-- X（旧Twitter）ポスト埋め込みスペース（空白状態） -->
+                    <div class="next-event-x-embed" id="x-tweet-embed">
+                        <!-- 今後、Xのツイート埋め込みコード（blockquoteタグ等）をここに配置します -->
+                    </div>
+                </div>
+
                 <ul class="news-list" id="news-list">
                     <li class="news-item">
                         <span class="news-date">2026.11.22</span>
@@ -922,21 +971,21 @@
                 </p>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2025年11月　初オープン</h3>
+                    <h3 class="history-month-title">2025年11月 初オープン</h3>
                     <div class="history-grid">
                         <img src="images/202511.png" alt="2025年11月 初オープン">
                     </div>
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2025年12月　クリスマス営業</h3>
+                    <h3 class="history-month-title">2025年12月 クリスマス営業</h3>
                     <div class="history-grid">
                         <img src="images/202512.png" alt="2025年12月 クリスマス営業">
                     </div>
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年1月　新年営業</h3>
+                    <h3 class="history-month-title">2026年1月 新年営業</h3>
                     <div class="history-grid">
                         <img src="images/202601.png" alt="2026年1月 新年営業 1">
                         <img src="images/202601_2.png" alt="2026年1月 新年営業 2">
@@ -944,7 +993,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年2月　バレンタイン営業</h3>
+                    <h3 class="history-month-title">2026年2月 バレンタイン営業</h3>
                     <div class="history-grid">
                         <img src="images/202602.png" alt="2026年2月 バレンタイン営業 1">
                         <img src="images/202602_2.png" alt="2026年2月 バレンタイン営業 2">
@@ -952,7 +1001,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年3月　ひな祭り営業</h3>
+                    <h3 class="history-month-title">2026年3月 ひな祭り営業</h3>
                     <div class="history-grid">
                         <img src="images/202603.png" alt="2026年3月 ひな祭り営業 1">
                         <img src="images/202603_2.png" alt="2026年3月 ひな祭り営業 2">
@@ -960,7 +1009,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年4月　しらつめ周年営業</h3>
+                    <h3 class="history-month-title">2026年4月 しらつめ周年営業</h3>
                     <div class="history-grid">
                         <img src="images/202604.png" alt="2026年4月 しらつめ周年営業 1">
                         <img src="images/202604_2.png" alt="2026年4月 しらつめ周年営業 2">
@@ -968,7 +1017,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年5月　通常営業</h3>
+                    <h3 class="history-month-title">2026年5月 通常営業</h3>
                     <div class="history-grid">
                         <img src="images/202605.png" alt="2026年5月 通常営業 1">
                         <img src="images/202605_2.png" alt="2026年5月 通常営業 2">
@@ -977,7 +1026,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年6月　リニューアルオープン</h3>
+                    <h3 class="history-month-title">2026年6月 リニューアルオープン</h3>
                     <div class="history-grid">
                         <img src="images/202606.png" alt="2026年6月 リニューアルオープン 1">
                         <img src="images/202606_2.png" alt="2026年6月 リニューアルオープン 2">
@@ -986,7 +1035,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年7月　水着営業</h3>
+                    <h3 class="history-month-title">2026年7月 水着営業</h3>
                     <div class="history-grid">
                         <img src="images/202607.png" alt="2026年7月 水着営業 1">
                         <img src="images/202607_2.png" alt="2026年7月 水着営業 2">
@@ -995,7 +1044,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年8月　浴衣営業</h3>
+                    <h3 class="history-month-title">2026年8月 浴衣営業</h3>
                     <div class="history-grid">
                         <img src="images/202608.png" alt="2026年8月 浴衣営業 1">
                         <img src="images/202608_2.png" alt="2026年8月 浴衣営業 2">
@@ -1004,7 +1053,7 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年9月　通常営業</h3>
+                    <h3 class="history-month-title">2026年9月 通常営業</h3>
                     <div class="history-grid">
                         <img src="images/202609.png" alt="2026年9月 通常営業 1">
                         <img src="images/202609_2.png" alt="2026年9月 通常営業 2">
@@ -1012,20 +1061,20 @@
                 </div>
 
                 <div class="history-month">
-                    <h3 class="history-month-title">2026年10月　ハロウィン営業</h3>
+                    <h3 class="history-month-title">2026年10月 ハロウィン営業</h3>
                     <div class="history-grid">
                         <img src="images/202610.png" alt="2026年10月 ハロウィン営業 1">
                         <img src="images/202610_2.png" alt="2026年10月 ハロウィン営業 2">
                         <img src="images/202610_3.png" alt="2026年10月 ハロウィン営業 3">
-                  
-                       <div class="history-month">
-                    <h3 class="history-month-title">2026年11月　一周年営業</h3>
+                    </div>
+                </div>
+
+                <div class="history-month">
+                    <h3 class="history-month-title">2026年11月 一周年営業</h3>
                     <div class="history-grid">
-                        <img src="images/202611.png" alt="2026年11月　一周年営業 1">
+                        <img src="images/202611.png" alt="2026年11月 一周年営業 1">
                         <img src="images/202611_2.png" alt="2026年11月 一周年営業 2">
                         <img src="images/202611_3.png" alt="2026年11月 一周年営業 3">
-                    </div>
-
                     </div>
                 </div>
             </section>
@@ -1033,7 +1082,7 @@
 
     </div>
 
-    <!-- 側面余白のSDイラスト（左右3か所ずつ計6ポイント・重なり防止） -->
+    <!-- 側面余白のSDイラスト -->
     <img id="side-sd-1" class="side-sd-decor" src="" alt="" aria-hidden="true">
     <img id="side-sd-2" class="side-sd-decor" src="" alt="" aria-hidden="true">
     <img id="side-sd-3" class="side-sd-decor" src="" alt="" aria-hidden="true">
@@ -1345,7 +1394,7 @@
                 if (e.key === 'Escape' && modal.style.display === 'flex') closeModal();
             });
 
-            // 側面余白の(キャスト名)SD.pngランダム切り替え（左右各3か所・重なり防止・ヘッダー/フッター/ヒーロースライダー回避）
+            // 側面余白の(キャスト名)SD.pngランダム切り替え
             const sideSdEls = [
                 document.getElementById('side-sd-1'),
                 document.getElementById('side-sd-2'),
@@ -1358,7 +1407,6 @@
             const heroSliderEl = document.getElementById('heroSlider');
             const pageTopEl = document.getElementById('page-top');
 
-            // ページ全体の高さに合わせ、左右それぞれ複数の出現位置を均等に用意
             function createSpawnPoints() {
                 const pageHeight = Math.max(
                     document.documentElement.scrollHeight,
@@ -1483,7 +1531,7 @@
                 const excludeImages = getActiveSdList(el);
                 const excludePoints = getActivePointIds(el);
                 const nextSrc = pickRandomItem(uniqueSdImages, excludeImages);
-                spawnPoints = createSpawnPoints(); // コンテンツの高さ変更にも追従
+                spawnPoints = createSpawnPoints();
                 const nextPoint = pickRandomItem(spawnPoints, excludePoints, 'id');
 
                 el.dataset.pendingSrc = nextSrc;
